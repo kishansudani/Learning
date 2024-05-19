@@ -107,7 +107,7 @@
 ------------------------------------
 
 ### Beginner Level
-- [ ] Basic CLI Calculator
+- [x] Basic CLI Calculator
 - [ ] Todo List Application
 - [ ] Number Guessing Game
 - [ ] Weather CLI App
