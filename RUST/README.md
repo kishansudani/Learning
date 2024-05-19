@@ -107,25 +107,25 @@
 ------------------------------------
 
 ### Beginner Level
-	- [x] Basic CLI Calculator
-	- [ ] Todo List Application
-	- [ ] Number Guessing Game
-	- [ ] Weather CLI App
-	- [ ] Simple File Encryptor/Decryptor
-	- [ ] Markdown to HTML Converter
+- [ ] Basic CLI Calculator
+- [ ] Todo List Application
+- [ ] Number Guessing Game
+- [ ] Weather CLI App
+- [ ] Simple File Encryptor/Decryptor
+- [ ] Markdown to HTML Converter
 
 ### Intermediate Level
-	- [ ] Multi-threaded Web Server
-	- [ ] Command Line Tool for File Operations
-	- [ ] Text-based Adventure Game
-	- [ ] REST API Client
-	- [ ] Static Site Generator
-	- [ ] Database Management CLI Tool
+- [ ] Multi-threaded Web Server
+- [ ] Command Line Tool for File Operations
+- [ ] Text-based Adventure Game
+- [ ] REST API Client
+- [ ] Static Site Generator
+- [ ] Database Management CLI Tool
 
 ### Expert Level
-	- [ ] Cryptocurrency Blockchain Simulator
-	- [ ] Real-time Chat Application
-	- [ ] Concurrent Data Processing System
-	- [ ] Distributed File System
-	- [ ] Machine Learning Library
-	- [ ] Custom Memory Allocator
+- [ ] Cryptocurrency Blockchain Simulator
+- [ ] Real-time Chat Application
+- [ ] Concurrent Data Processing System
+- [ ] Distributed File System
+- [ ] Machine Learning Library
+- [ ] Custom Memory Allocator
