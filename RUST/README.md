@@ -108,7 +108,8 @@
 
 ### Beginner Level
 - [x] Basic CLI Calculator
-- [ ] Todo List Application
+- [x] Todo List Application
+	- [] Test Pending
 - [ ] Number Guessing Game
 - [ ] Weather CLI App
 - [ ] Simple File Encryptor/Decryptor
