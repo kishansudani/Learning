@@ -109,10 +109,11 @@
 ### Beginner Level
 - [x] Basic CLI Calculator
 - [x] Todo List Application
-	- [] Test Pending
+	- [ ] Test Pending
 - [x] Number Guessing Game
 - [x] Weather CLI App
 - [ ] Simple File Encryptor/Decryptor
+	- [ ] Test Pending
 - [ ] Markdown to HTML Converter
 
 ### Intermediate Level
