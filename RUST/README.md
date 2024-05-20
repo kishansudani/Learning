@@ -110,8 +110,8 @@
 - [x] Basic CLI Calculator
 - [x] Todo List Application
 	- [] Test Pending
-- [ ] Number Guessing Game
-- [ ] Weather CLI App
+- [x] Number Guessing Game
+- [x] Weather CLI App
 - [ ] Simple File Encryptor/Decryptor
 - [ ] Markdown to HTML Converter
 
