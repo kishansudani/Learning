@@ -5,7 +5,7 @@ fn main() {
     let args: Vec<String> = env::args().collect();
 
     if args.len() < 2 || args.len() > 6 {
-        println!("Invalid number of arguments");
+        encryptor_decryptor::print_help();
         process::exit(0);
     }
 
