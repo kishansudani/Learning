@@ -1,5 +1,5 @@
 use argon2::Argon2;
-use base64;
+use base64::{self, Engine};
 use chacha20poly1305::{
     self,
     aead::{Aead, AeadCore, KeyInit, OsRng},
@@ -187,8 +187,9 @@ fn encryption(
             .encrypt(&nonce, line.as_bytes())
             .map_err(|err| format!("Encryption error: {}", err))?;
 
-        let encoded_nonce = base64::encode(&nonce);
-        let encoded_ciphertext = base64::encode(&ciphertext);
+        // let encoded_nonce = base64:: encode(&nonce);
+        let encoded_nonce = base64::engine::general_purpose::STANDARD.encode(&nonce);
+        let encoded_ciphertext = base64::engine::general_purpose::STANDARD.encode(&ciphertext);
 
         encrypted_content.push_str(&encoded_nonce);
         encrypted_content.push(':');
@@ -220,11 +221,13 @@ fn decryption(config: &Config, mut write_file: File) -> Result<(), Box<dyn Error
 
         let (nonce, text) = (splits[0], splits[1]);
 
-        let nonce = base64::decode(nonce).unwrap();
+        let nonce = base64::engine::general_purpose::STANDARD
+            .decode(nonce)
+            .unwrap();
 
         let nonce = chacha20poly1305::Nonce::from_slice(&nonce);
 
-        let vecs = base64::decode(&text)?;
+        let vecs = base64::engine::general_purpose::STANDARD.decode(&text)?;
 
         let plaintext = cipher
             .decrypt(&nonce, vecs.as_ref())
