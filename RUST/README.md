@@ -110,8 +110,8 @@
 
 ### Intermediate Level
 
-- [ ] Multi-threaded Web Server
-- [ ] Command Line Tool for File Operations
+- [x] Multi-threaded Web Server
+- [x] Command Line Tool for File Operations
 - [ ] Text-based Adventure Game
 - [ ] REST API Client
 - [ ] Static Site Generator
