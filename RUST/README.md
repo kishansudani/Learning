@@ -116,7 +116,7 @@
   - Not gonna do that right now, It's too long project
 - [x] REST API Client
 - [ ] Static Site Generator
-- [ ] Database Management CLI Tool
+- [x] Database Management CLI Tool
 
 ### Expert Level
 
