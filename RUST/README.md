@@ -114,7 +114,7 @@
 - [x] Command Line Tool for File Operations
 - [ ] Text-based Adventure Game
   - Not gonna do that right now, It's too long project
-- [ ] REST API Client
+- [x] REST API Client
 - [ ] Static Site Generator
 - [ ] Database Management CLI Tool
 
