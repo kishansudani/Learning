@@ -7,6 +7,7 @@ edition = "2021"
 dotenv = "0.15.0"
 ethers = { version = "2.0", features = ["rustls", "ws"] }
 tokio = { version = "1", features = ["macros"] }
+eyre = "0.6.12"
 
 [toolchain]
 channel = "nightly"

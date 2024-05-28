@@ -26,28 +26,33 @@ impl Ethereum_client {
         })
     }
 
-    pub async fn set_client(&mut self, p_key: String) -> Result<(), Box<dyn Error>> {
+    pub async fn set_client_with_privet_key(
+        &mut self,
+        p_key: String,
+    ) -> Result<(), Box<dyn Error>> {
         let wallet: LocalWallet = p_key.parse::<LocalWallet>()?;
-        let address = wallet.address();
-        let gas_oracle = GasNow::new();
 
-        // let check: NonceManagerMiddleware<
-        //     SignerMiddleware<GasOracleMiddleware<Provider<Http>, GasNow>, LocalWallet
-        // > = Provider::<Http>::try_from(RPC)
-        //     .unwrap()
-        //     .gas_oracle(gas_oracle)
-        //     .with_signer(wallet.clone())
-        //     .nonce_manager(address);
-
-        let value = SignerMiddleware::new(self.provider.clone(), wallet);
+        let value: SignerMiddleware<Provider<Http>, LocalWallet> =
+            SignerMiddleware::new(self.provider.clone(), wallet);
         self.client = Some(value);
 
         Ok(())
     }
 
-    pub fn create_tx(&self, to: H160, value: U256) -> Result<(), Box<dyn Error>> {
+    pub async fn create_and_send_tx(&self, to: H160, value: U256) -> Result<(), Box<dyn Error>> {
         let tx = TransactionRequest::new().to(to).value(value);
         println!("TX RAW IS {tx:?}");
+
+        let user_account = self.client.clone().unwrap().address();
+
+        let nonce_manager = self.client.clone().unwrap().nonce_manager(user_account);
+
+        nonce_manager
+            .send_transaction(tx, Some(BlockNumber::Pending.into()))
+            .await?
+            .await?
+            .unwrap();
+
         Ok(())
     }
 

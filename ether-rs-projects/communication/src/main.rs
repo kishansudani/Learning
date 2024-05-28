@@ -4,11 +4,14 @@ mod eth_rpc;
 use dotenv::dotenv;
 use eth_rpc::Ethereum_client;
 use ethers::prelude::*;
-use ethers::{types::H160, utils::parse_ether};
+use ethers::{core::utils::Anvil, providers::Http, types::H160, utils::parse_ether};
+use eyre::Result;
 use std::error::Error;
+use std::str::FromStr;
+use std::time::Duration;
 
 #[tokio::main(flavor = "current_thread")]
-async fn main() {
+async fn main() -> Result<()> {
     dotenv().ok();
 
     let _: String = std::env::var("SIGNER_PRIVET_KEY").expect("Failed to read signer privet key");
@@ -22,5 +25,7 @@ async fn main() {
     let val = parse_ether(1u64).unwrap();
 
     // let _ = test.get_block(10).await;
-    let _ = test.create_tx(to_adr, val).unwrap();
+    let _ = test.create_tx(to_adr, val).await.unwrap();
+
+    Ok(())
 }
