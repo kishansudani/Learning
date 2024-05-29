@@ -1,10 +1,7 @@
 use ethers::{
-    middleware::{
-        gas_escalator::{Frequency, GasEscalatorMiddleware, GeometricGasPrice},
-        gas_oracle::{GasNow, GasOracleMiddleware},
-        MiddlewareBuilder, NonceManagerMiddleware, SignerMiddleware,
-    },
+    middleware::{MiddlewareBuilder, SignerMiddleware},
     prelude::*,
+    utils::{parse_units, AnvilInstance, ParseUnits},
 };
 use gas_oracle::ProviderOracle;
 use std::{env, error::Error};
@@ -14,44 +11,106 @@ const RPC: &str = "https://eth.llamarpc.com";
 pub struct Ethereum_client {
     provider: Provider<Http>,
     client: Option<SignerMiddleware<Provider<Http>, LocalWallet>>,
+    address: Option<H160>,
 }
 
 impl Ethereum_client {
-    pub fn new() -> Result<Ethereum_client, Box<dyn Error>> {
-        let provider: Provider<Http> = Provider::<Http>::try_from(RPC)?;
+    pub fn new(rpc: String) -> Result<Ethereum_client, Box<dyn Error>> {
+        let provider: Provider<Http> = Provider::<Http>::try_from(rpc)?;
 
         Ok(Self {
             provider,
             client: None,
+            address: None,
         })
     }
 
-    pub async fn set_client_with_privet_key(
+    pub fn set_client_with_privet_key(
         &mut self,
-        p_key: String,
+        wallet: LocalWallet,
+        chain_id: u64,
     ) -> Result<(), Box<dyn Error>> {
-        let wallet: LocalWallet = p_key.parse::<LocalWallet>()?;
+        let value: Option<SignerMiddleware<Provider<Http>, LocalWallet>> = Some(
+            SignerMiddleware::new(self.provider.clone(), wallet.with_chain_id(chain_id)),
+        );
 
-        let value: SignerMiddleware<Provider<Http>, LocalWallet> =
-            SignerMiddleware::new(self.provider.clone(), wallet);
-        self.client = Some(value);
+        (self.client, self.address) = match value {
+            Some(value) => (Some(value.clone()), Some(value.address())),
+            None => {
+                return Err(Box::new(std::io::Error::new(
+                    std::io::ErrorKind::Other,
+                    "Intialization failed",
+                )))
+            }
+        };
 
         Ok(())
     }
+    pub fn load_wallet(
+        &self,
+        instance: Option<&AnvilInstance>,
+        p_key: String,
+    ) -> Result<LocalWallet, Box<dyn Error>> {
+        if instance.is_none() && p_key.is_empty() {
+            return Err(Box::new(std::io::Error::new(
+                std::io::ErrorKind::Other,
+                "Privet key not found for provided instance",
+            )));
+        }
+        let wallet: LocalWallet = match instance {
+            Some(instance) => instance.keys()[0].clone().into(),
+            None => p_key.parse::<LocalWallet>()?,
+        };
 
-    pub async fn create_and_send_tx(&self, to: H160, value: U256) -> Result<(), Box<dyn Error>> {
-        let tx = TransactionRequest::new().to(to).value(value);
-        println!("TX RAW IS {tx:?}");
+        Ok(wallet)
+    }
 
-        let user_account = self.client.clone().unwrap().address();
+    pub fn create_raw_coin_tx(
+        &self,
+        to: &str,
+        value: u64,
+        to_unit: &str,
+    ) -> Result<TransactionRequest, Box<dyn Error>> {
+        let user_account = self.address.unwrap();
 
+        let value: ParseUnits = match to_unit {
+            "wei" => parse_units(value, "wei").unwrap(),
+            "kwei" => parse_units(value, "kwei").unwrap(),
+            "mwei" => parse_units(value, "mwei").unwrap(),
+            "gwei" => parse_units(value, "gwei").unwrap(),
+            "szabo" => parse_units(value, "szabo").unwrap(),
+            "finney" => parse_units(value, "finney").unwrap(),
+            "ether" => parse_units(value, "ether").unwrap(),
+            _ => value.into(),
+        };
+
+        let value = U256::from(value);
+
+        let to: H160 = to.parse().unwrap();
+        let tx = TransactionRequest::new()
+            .from(user_account)
+            .to(to)
+            .value(value);
+
+        Ok(tx)
+    }
+
+    pub fn get_client(&self) -> Option<SignerMiddleware<Provider<Http>, LocalWallet>> {
+        self.client.clone()
+    }
+
+    pub async fn send_raw_tx(&self, tx: TransactionRequest) -> Result<(), Box<dyn Error>> {
+        let user_account = self.address.unwrap();
         let nonce_manager = self.client.clone().unwrap().nonce_manager(user_account);
 
-        nonce_manager
-            .send_transaction(tx, Some(BlockNumber::Pending.into()))
-            .await?
-            .await?
-            .unwrap();
+        let pending_tx = nonce_manager.send_transaction(tx, None).await?.await?;
+
+        if pending_tx.is_some() {
+            println!(
+                "Pending tx: {}",
+                serde_json::to_string_pretty(&pending_tx.unwrap())?
+            );
+        }
 
         Ok(())
     }
@@ -83,26 +142,44 @@ impl Ethereum_client {
         Ok(self.provider.get_balance(from, None).await?)
     }
 
-    pub async fn send_coin(
-        &self,
-        from: Address,
-        to: Address,
-        value: U256,
-    ) -> Result<Bytes, Box<dyn Error>> {
-        let tx = TransactionRequest::default()
-            .from(from)
-            .to(to)
-            .value(value)
-            .into();
-        let result = self.provider.call_raw(&tx).await?;
-
-        Ok(result)
-    }
-
     pub async fn get_gas_price_oracle(&self) -> Result<U256, Box<dyn Error>> {
         let oracle = ProviderOracle::new(self.provider.clone());
 
         let price: U256 = oracle.fetch().await?;
         Ok(price)
+    }
+
+    pub async fn get_code(&self, at: Address) -> Result<Bytes, Box<dyn Error>> {
+        Ok(self.provider.get_code(at, None).await?)
+    }
+
+    pub async fn is_contract_exists(&self, at: Address) -> Result<bool, Box<dyn Error>> {
+        let code = self.get_code(at).await?;
+
+        Ok(code.len() > 0)
+    }
+
+    pub async fn get_slot_data(&self, at: Address, slot: TxHash) -> Result<H256, Box<dyn Error>> {
+        let slot_data = self.provider.get_storage_at(at, slot, None).await?;
+
+        Ok(slot_data)
+    }
+
+    pub async fn get_transaction_data(
+        &self,
+        transaction_hash: TxHash,
+    ) -> Result<Option<Transaction>, Box<dyn Error>> {
+        let transaction = self.provider.get_transaction(transaction_hash).await?;
+
+        Ok(transaction)
+    }
+
+    pub async fn sign_message(
+        &self,
+        message: String,
+        wallet: LocalWallet,
+    ) -> Result<Signature, Box<dyn Error>> {
+        let signature = wallet.sign_message(message.as_bytes()).await?;
+        Ok(signature)
     }
 }
