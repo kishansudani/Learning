@@ -1,6 +1,8 @@
 // connect with ethereum node
+mod contract;
 mod eth_rpc;
 
+use contract::Contracts;
 use dotenv::dotenv;
 use eth_rpc::Ethereum_client;
 
@@ -76,6 +78,18 @@ async fn main() -> Result<(), Box<dyn Error>> {
             println!("Error: {:?}", err);
         }
     };
+
+    let provider = client.get_client().unwrap();
+
+    let contract = Contracts::new(
+        provider,
+        "0xd38D26954C4a8087358b8D698fE5e3255C5Aecea",
+        "src/contract/IERC20.json",
+    )
+    .unwrap()
+    .unwrap();
+
+    contract.print_all_contract_events();
 
     Ok(())
 }
