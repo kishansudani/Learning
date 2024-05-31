@@ -1,0 +1,11 @@
+[package]
+name = "blockchain_data"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+tokio = { veriosn = "1.36.0", features = ["macros", "rt-multi-thread"] }
+tokio-macros = { version = "2.3.0" }
+mongodb = "2.8.1"
+ethers = { version = "2.0", features = ["rustls", "ws", "solc"] }
+serde_json = "1.0.116"
