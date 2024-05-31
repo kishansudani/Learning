@@ -1,31 +1,31 @@
 ### Basics
 
-- [ ] Introduction to Python
-- [ ] Setting Up Python Environment
-- [ ] Python Syntax and Data Types
-- [ ] Variables and Operators
-- [ ] Control Flow (if, elif, else)
-- [ ] Loops (for, while)
-- [ ] Functions
-- [ ] Modules and Packages
-- [ ] Error Handling (try, except)
+- [X] Introduction to Python
+- [X] Setting Up Python Environment
+- [X] Python Syntax and Data Types
+- [X] Variables and Operators
+- [X] Control Flow (if, elif, else)
+- [X] Loops (for, while)
+- [X] Functions
+- [X] Modules and Packages
+- [X] Error Handling (try, except)
 
 ### Data Structures
 
-- [ ] Lists
-- [ ] Tuples
-- [ ] Sets
-- [ ] Dictionaries
-- [ ] List Comprehensions
+- [X] Lists
+- [X] Tuples
+- [X] Sets
+- [X] Dictionaries
+- [X] List Comprehensions
 - [ ] Generators
-- [ ] Iterators
+- [X] Iterators
 - [ ] Collections Module
 - [ ] Named Tuples
-- [ ] Queues and Stacks
+- [X] Queues and Stacks
 
 ### Object-Oriented Programming (OOP)
 
-- [ ] Classes and Objects
+- [X] Classes and Objects
 - [ ] Inheritance
 - [ ] Polymorphism
 - [ ] Encapsulation
@@ -36,20 +36,20 @@
 
 ### Functional Programming
 
-- [ ] Lambda Functions
+- [X] Lambda Functions
 - [ ] Map, Filter, Reduce
 - [ ] itertools Module
-- [ ] functools Module
+- [X] functools Module
 - [ ] Comprehensions
 - [ ] Higher-Order Functions
-- [ ] Recursion
+- [X] Recursion
 - [ ] Closures
 
 ### File Handling
 
-- [ ] Opening and Reading Files
-- [ ] Writing to Files
-- [ ] File Modes (r, w, a, etc.)
+- [X] Opening and Reading Files
+- [X] Writing to Files
+- [X] File Modes (r, w, a, etc.)
 - [ ] Working with CSV and JSON Files
 - [ ] Exception Handling in File Operations
 
