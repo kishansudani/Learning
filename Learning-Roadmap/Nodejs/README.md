@@ -1,17 +1,17 @@
 ### Basics
 
-- [ ] Introduction to Node.js
-- [ ] Setting Up Node.js Environment
-- [ ] Node.js Runtime Environment
+- [x] Introduction to Node.js
+- [x] Setting Up Node.js Environment
+- [x] Node.js Runtime Environment
 - [ ] Node.js REPL (Read-Eval-Print Loop)
 
 ### Core Modules
 
-- [ ] fs (File System)
+- [x] fs (File System)
 - [ ] http (HTTP Server and Client)
 - [ ] https (HTTPS Server and Client)
 - [ ] os (Operating System)
-- [ ] path (File Path Utility)
+- [X] path (File Path Utility)
 - [ ] events (Event Emitter)
 - [ ] util (Utility)
 - [ ] stream (Streams)
@@ -19,15 +19,15 @@
 - [ ] querystring (Query String)
 - [ ] crypto (Cryptography)
 - [ ] child_process (Child Processes)
-- [ ] assert (Assertion Testing)
-- [ ] process (Process Object)
+- [x] assert (Assertion Testing)
+- [x] process (Process Object)
 - [ ] timers (Timers)
 
 ### NPM (Node Package Manager)
 
-- [ ] Installing Packages
-- [ ] Managing Dependencies
-- [ ] Package.json File
+- [x] Installing Packages
+- [x] Managing Dependencies
+- [x] Package.json File
 - [ ] Semantic Versioning (SemVer)
 - [ ] Publishing Packages
 - [ ] Creating NPM Scripts
@@ -35,9 +35,9 @@
 ### Asynchronous Programming
 
 - [ ] Callbacks
-- [ ] Promises
+- [x] Promises
 - [ ] Async/Await
-- [ ] Error Handling
+- [X] Error Handling
 - [ ] Event Emitters
 - [ ] Streams
 - [ ] Callback Hell and Its Solutions
@@ -59,14 +59,14 @@
 
 ### Database Connectivity
 
-- [ ] MongoDB
+- [X] MongoDB
 - [ ] Mongoose (MongoDB ORM)
 - [ ] MySQL
 - [ ] Sequelize (MySQL ORM)
-- [ ] PostgreSQL
+- [X] PostgreSQL
 - [ ] Redis (In-Memory Database)
 - [ ] Connecting to Databases
-- [ ] Performing CRUD Operations
+- [X] Performing CRUD Operations
 
 ### Testing in Node.js
 
