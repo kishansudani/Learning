@@ -1,94 +1,94 @@
-- [ ] Basics
-  - [ ] Syntax and Structure
-    - [ ] File structure
-    - [ ] Basic syntax
-    - [ ] Comments
-  - [ ] Primitives
-    - [ ] Integers (int, uint)
-    - [ ] Boolean
-    - [ ] Address
-    - [ ] String
-    - [ ] Bytes
-- [ ] Variables
-  - [ ] State variables
-  - [ ] Local variables
-  - [ ] Global variables
-  - [ ] Constants
-  - [ ] Immutable variables
-- [ ] Data Structures
-  - [ ] Arrays
-    - [ ] Fixed-size arrays
-    - [ ] Dynamic arrays
-  - [ ] Structs
-  - [ ] Mappings
-  - [ ] Enums
-- [ ] Functions
-  - [ ] Function declaration
-  - [ ] Function modifiers
-  - [ ] View and pure functions
-  - [ ] Payable functions
-  - [ ] Fallback and receive functions
-  - [ ] Function overloading
-  - [ ] Function visibility (public, private, internal, external)
-  - [ ] Gas estimations for functions
-  - [ ] Function signatures
-  - [ ] Selector collisions
-  - [ ] Error handling (require, assert, revert)
-- [ ] Contracts
-  - [ ] Contract declaration
-  - [ ] Inheritance
-  - [ ] Abstract contracts
-  - [ ] Interfaces
-  - [ ] Libraries
-  - [ ] Contract factories
-- [ ] Access Control
-  - [ ] Ownable contracts
-  - [ ] Role-based access control
-  - [ ] Modifiers
-- [ ] Ether and Gas
-  - [ ] Sending and receiving Ether
-  - [ ] Gas and gas price
-  - [ ] Gas optimization
-  - [ ] Fallback mechanisms
-  - [ ] Gas stipend
-  - [ ] Gas refunds
-- [ ] Events and Logging
-  - [ ] Event declaration
-  - [ ] Emitting events
-  - [ ] Indexing events
-  - [ ] Event listening
+- [x] Basics
+  - [x] Syntax and Structure
+    - [x] File structure
+    - [x] Basic syntax
+    - [x] Comments
+  - [x] Primitives
+    - [x] Integers (int, uint)
+    - [x] Boolean
+    - [x] Address
+    - [x] String
+    - [x] Bytes
+- [x] Variables
+  - [x] State variables
+  - [x] Local variables
+  - [x] Global variables
+  - [x] Constants
+  - [x] Immutable variables
+- [x] Data Structures
+  - [x] Arrays
+    - [x] Fixed-size arrays
+    - [x] Dynamic arrays
+  - [x] Structs
+  - [x] Mappings
+  - [x] Enums
+- [x] Functions
+  - [x] Function declaration
+  - [x] Function modifiers
+  - [x] View and pure functions
+  - [x] Payable functions
+  - [x] Fallback and receive functions
+  - [x] Function overloading
+  - [x] Function visibility (public, private, internal, external)
+  - [x] Gas estimations for functions
+  - [x] Function signatures
+  - [x] Selector collisions
+  - [x] Error handling (require, assert, revert)
+- [x] Contracts
+  - [x] Contract declaration
+  - [x] Inheritance
+  - [x] Abstract contracts
+  - [x] Interfaces
+  - [x] Libraries
+  - [x] Contract factories
+- [x] Access Control
+  - [x] Ownable contracts
+  - [x] Role-based access control
+  - [x] Modifiers
+- [x] Ether and Gas
+  - [x] Sending and receiving Ether
+  - [x] Gas and gas price
+  - [x] Gas optimization
+  - [x] Fallback mechanisms
+  - [x] Gas stipend
+  - [x] Gas refunds
+- [x] Events and Logging
+  - [x] Event declaration
+  - [x] Emitting events
+  - [x] Indexing events
+  - [x] Event listening
 - [ ] Memory and Storage
   - [ ] Storage layout
-  - [ ] Memory keyword
-  - [ ] Storage keyword
-  - [ ] Call data keyword
+  - [x] Memory keyword
+  - [x] Storage keyword
+  - [x] Call data keyword
   - [ ] Data location
   - [ ] Storage pointers
   - [ ] Memory pointers
 - [ ] Smart Contract Security
-  - [ ] Reentrancy
-  - [ ] Integer overflow and underflow
-  - [ ] Access control
+  - [x] Reentrancy
+  - [x] Integer overflow and underflow
+  - [x] Access control
   - [ ] Front-running
-  - [ ] Delegate call
-  - [ ] Self-destruct
+  - [x] Delegate call
+  - [x] Self-destruct
   - [ ] Phishing and social engineering
   - [ ] Flash loan attacks
   - [ ] Oracle manipulation
-  - [ ] Timestamp dependence
+  - [x] Timestamp dependence
   - [ ] Denial of service (DoS)
 - [ ] Advanced Concepts
   - [ ] Assembly
   - [ ] Inline assembly
   - [ ] Yul
-  - [ ] Custom error types
+  - [x] Custom error types
   - [ ] Low-level calls (call, delegatecall, staticcall)
   - [ ] Storage layout compatibility
   - [ ] Contract introspection
 - [ ] ERC Standards
-  - [ ] ERC-20
-  - [ ] ERC-721
-  - [ ] ERC-1155
+  - [x] ERC-20
+  - [x] ERC-721
+  - [x] ERC-1155
   - [ ] ERC-777
   - [ ] ERC-223
   - [ ] ERC-827
@@ -96,42 +96,42 @@
   - [ ] ERC-1400
   - [ ] ERC-1820
 - [ ] Development Tools and Environment
-  - [ ] Solidity compiler (solc)
-  - [ ] Remix IDE
-  - [ ] Truffle suite
+  - [x] Solidity compiler (solc)
+  - [x] Remix IDE
+  - [x] Truffle suite
   - [ ] Hardhat
-  - [ ] Ganache
-  - [ ] MetaMask
-  - [ ] Infura
-  - [ ] Foundry
-  - [ ] Chainlink
+  - [x] Ganache
+  - [x] MetaMask
+  - [x] Infura
+  - [x] Foundry
+  - [x] Chainlink
   - [ ] OpenZeppelin CLI
 - [ ] Testing
   - [ ] Unit testing with Truffle
   - [ ] Unit testing with Hardhat
-  - [ ] Unit testing with Foundry
+  - [x] Unit testing with Foundry
   - [ ] Integration testing
-  - [ ] Mock contracts
+  - [x] Mock contracts
   - [ ] Property-based testing
   - [ ] Fuzz testing
   - [ ] Coverage analysis
 - [ ] Deployment and Upgrades
-  - [ ] Deployment scripts
-  - [ ] Proxy patterns
-  - [ ] Transparent proxy
+  - [x] Deployment scripts
+  - [x] Proxy patterns
+  - [x] Transparent proxy
   - [ ] UUPS proxy
   - [ ] Beacon proxy
   - [ ] Multisig wallets
-  - [ ] Migration scripts
+  - [x] Migration scripts
 - [ ] Best Practices
-  - [ ] Code readability
-  - [ ] Code documentation
-  - [ ] Design patterns
-  - [ ] Security practices
+  - [x] Code readability
+  - [x] Code documentation
+  - [x] Design patterns
+  - [x] Security practices
   - [ ] Gas optimization techniques
 - [ ] Interoperability
-  - [ ] Interfacing with other smart contracts
-  - [ ] Oracles
+  - [x] Interfacing with other smart contracts
+  - [x] Oracles
   - [ ] Cross-chain communication
   - [ ] External data sources
   - [ ] Cross-chain bridges
