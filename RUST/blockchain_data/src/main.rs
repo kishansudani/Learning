@@ -12,9 +12,11 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let client = ClientConnection::new(DB_URI).await?;
     let rpc = RpcClient::new(RPC)?;
 
-    let block = rpc.get_block(10).await?;
+    // let block = rpc.get_block(10).await?;
 
-    println!("{:?}", block);
+    // println!("{:?}", block);
+
+    rpc.get_block_range(10, 50).await?;
 
     Ok(())
 }

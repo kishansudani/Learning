@@ -1,4 +1,7 @@
+pub mod parse_block;
+
 use ethers::prelude::*;
+use parse_block::Blocks;
 use std::error::Error;
 
 pub struct RpcClient {
@@ -25,11 +28,18 @@ impl RpcClient {
         Ok(result.unwrap())
     }
 
-    pub fn parse_block(&self, block: Block<H256>) -> Result<(), Box<dyn Error>> {
+    pub async fn get_block_range(&self, mut start: u64, end: u64) -> Result<(), Box<dyn Error>> {
+        while start <= end {
+            let block = self.get_block(start).await?;
+            let parsed_block = Blocks::new(block)?;
+
+            let number = parsed_block.get_number()?;
+            println!("{:?}", number);
+            parsed_block.get_print_all_transaction_hash()?;
+
+            start += 1;
+        }
+
         Ok(())
     }
-
-    pub async fn get_block_range(&self, start: u64, end: u64) {}
-
-    pub async fn get_address_balance(&self, address: H160) {}
 }
