@@ -12,11 +12,12 @@ const newPair = new Keypair();
 const publicKey = new PublicKey(newPair._keypair.publicKey).toString();
 const privateKey = newPair._keypair.secretKey;
 
-console.log("Public Key of the generated keypair", publicKey, privateKey);
+console.log("Public Key of the generated keypair", publicKey);
 
 const getWalletBalance = async () => {
   try {
-    const connection = new Connection("https://api.devnet.solana.com");
+    // const connection = new Connection("https://api.devnet.solana.com");
+    const connection = new Connection("http://127.0.0.1:8899", "confirmed");
 
     const myWallet = await Keypair.fromSecretKey(privateKey);
     const walletBalance = await connection.getBalance(
@@ -32,7 +33,8 @@ const getWalletBalance = async () => {
 
 const airDropSol = async () => {
   try {
-    const connection = new Connection("https://api.devnet.solana.com");
+    // const connection = new Connection("https://api.devnet.solana.com");
+    const connection = new Connection("http://127.0.0.1:8899", "confirmed");
     const myWallet = await Keypair.fromSecretKey(privateKey);
 
     console.log("Airdropping some SOL to my wallet!");
