@@ -1,0 +1,34 @@
+{
+  "name": "solana-hello-world",
+  "version": "0.0.1",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kishansudani/Learning"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "scripts": {
+    "start": "node src/client/main.js",
+    "deploy-and-start": "solana program deploy dist/program/helloworld.so && node src/client/main.js",
+    "start-with-test-validator": "start-server-and-test 'solana-test-validator --reset --quiet' http://127.0.0.1:8899/health deploy-and-start",
+    "clean": "npm run clean:program-rust",
+    "build:program-rust": "cargo build-bpf --manifest-path=./src/program-rust/Cargo.toml --bpf-out-dir=dist/program",
+    "clean:program-rust": "cargo clean --manifest-path=./src/program-rust/Cargo.toml && rm -rf ./dist",
+    "test:program-rust": "cargo test-bpf --manifest-path=./src/program-rust/Cargo.toml"
+  },
+  "dependencies": {
+    "@solana/web3.js": "^1.94.0",
+    "borsh": "^0.7.0",
+    "mz": "^2.7.0",
+    "yaml": "^2.0.0"
+  },
+  "devDependencies": {
+    "prettier": "^2.1.2",
+    "start-server-and-test": "^1.11.6"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
