@@ -1,0 +1,16 @@
+[package]
+name = "personal_counter"
+version = "1.0.0"
+authors = []
+
+[addresses]
+my_addrx = '967f580f5dfdf5900ef90a3d9c5f1bdcf115ba27c5e2a515526fe6839c1c27f2'
+
+[dev-addresses]
+
+[dependencies.AptosFramework]
+git = "https://github.com/aptos-labs/aptos-framework.git"
+rev = "mainnet"
+subdir = "aptos-framework"
+
+[dev-dependencies]
