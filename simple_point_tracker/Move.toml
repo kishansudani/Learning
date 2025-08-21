@@ -1,0 +1,16 @@
+[package]
+name = "simple_fungible_asset"
+version = "1.0.0"
+authors = []
+
+[addresses]
+my_addrx = '167d23fe610c17aca157c3b5f4f66d8da96103c22ff131acd1003b17f9ecbeaa'
+
+[dev-addresses]
+
+[dependencies.AptosFramework]
+git = "https://github.com/aptos-labs/aptos-framework.git"
+rev = "mainnet"
+subdir = "aptos-framework"
+
+[dev-dependencies]
